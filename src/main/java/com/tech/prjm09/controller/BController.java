@@ -75,12 +75,16 @@ public class BController {
 	
 	@GetMapping("content_view")
 	public String content_view(HttpServletRequest request, Model model) {
+		System.out.println("content_view() ctr");		
+//		model.addAttribute("request", request);
+//		command = new BContentCommand();
+//		command.execute(model);
 		
-		System.out.println("content_view() ctr");
+		String bid = request.getParameter("bid");
+		BDto dto = iDao.contentView(bid);
 		
-		model.addAttribute("request", request);
-		command = new BContentCommand();
-		command.execute(model);
+		model.addAttribute("content_view", dto);
+		
 		
 		return "content_view";
 	}
@@ -88,7 +92,6 @@ public class BController {
 	@GetMapping("modify_view")
 	public String modify_view(HttpServletRequest request, Model model) {
 		System.out.println("modify_view() ctr");
-		
 		model.addAttribute("request", request);
 		command = new BModifyViewCommand();
 		command.execute(model);
