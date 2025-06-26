@@ -26,14 +26,31 @@
 	</select>
 	
 	<update id="modify">
-		UPDATE REPLYBOARD SET BNAME = #{param1}, BTITLE = #{param2}, BCONTENT = #{param3} WHERE BID = #{param4}
+		UPDATE REPLYBOARD SET BNAME = #{param2}, BTITLE = #{param3}, BCONTENT = #{param4} WHERE BID = #{param1}
 	</update>
 	
 	<select id="reply_view" resultType="com.tech.prjm09.dto.BDto">
-		SELECT BID, BNAME, BTITLE, BCONTENT, BDATE, 
-		BHIT, BGROUP, BSTEP, BINDENT
+		SELECT BID, BNAME, BTITLE, BCONTENT, BDATE, BHIT, BGROUP, BSTEP, BINDENT
 		FROM REPLYBOARD WHERE BID = #{param1}
 	</select>
+	
+	<insert id="reply">
+		INSERT INTO REPLYBOARD(BID, BNAME, BTITLE, BCONTENT, BGROUP, BSTEP, BINDENT)
+		VALUES(REPLYBOARD_SEQ.NEXTVAL, #{param2}, #{param3}, #{param4}, #{param5}, #{param6} + 1, #{param7} + 1)
+	</insert>
+	
+	<update id="replyShape">
+		UPDATE REPLYBOARD SET BSTEP = BSTEP + 1
+		WHERE BGROUP = #{param1} AND BSTEP > #{param2}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM REPLYBOARD WHERE BID = #{param1}
+	</delete>
+	
+	<update id="upHit">
+		UPDATE REPLYBOARD SET BHIT = BHIT + 1 WHERE BID = #{param1}
+	</update>
 
     
 

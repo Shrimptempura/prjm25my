@@ -1,5 +1,6 @@
 package com.tech.prjm09.dao;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -14,6 +15,11 @@ public interface IDao {
 	BDto modifyView(String sbid);
 	void modify(String bid, String bname, String btitle, String bcontent);
 	BDto reply_view(String sbid);
+	void reply(String bid, String bname, String btitle, String bcontent, 
+			String bgroup, String bstep, String bindent);
+	int replyShape(String strgroup, String strstep);
+	void delete(String bid);
+	void upHit(String sbid);
 
 
 
