@@ -10,6 +10,9 @@ import com.tech.prjm09.dto.BDto;
 public interface IDao {
 	ArrayList<BDto> list();
 	void write(String bname, String btitle, String bcontent);
+<<<<<<< feat/tj2
 	BDto contentView(String bid);
+=======
+>>>>>>> dev
 
 }
