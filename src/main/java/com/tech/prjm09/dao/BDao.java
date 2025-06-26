@@ -214,7 +214,6 @@ public class BDao {
 	public void reply(String bid, String bname, String btitle, String bcontent, 
 			String bgroup, String bstep, String bindent) {
 		
-//		transaction
 //		Connection conn = null;
 		PreparedStatement pstmt = null;
 
@@ -224,13 +223,8 @@ public class BDao {
 
 		try {
 			conn = DBCon.getConnection();
-			// autocommit 변경
-			conn.setAutoCommit(false); // 자동커밋 해제
 			
-			int rn1 = replyShape(bgroup, bstep, conn);
-			System.out.println("rn111111: " + rn1);
-			
-			int rn2 = 0;
+			replyShape(bgroup, bstep);
 			
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, bname);
@@ -301,7 +295,7 @@ public class BDao {
 		return dto;
 	}
 	
-	public int replyShape(String strgroup, String strstep, Connection tracon) {
+	public int replyShape(String strgroup, String strstep) {
 		
 //		Connection conn = null;
 		PreparedStatement pstmt = null;
