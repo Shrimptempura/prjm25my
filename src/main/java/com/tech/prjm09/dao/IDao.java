@@ -12,6 +12,8 @@ public interface IDao {
 	void write(String bname, String btitle, String bcontent);
 	BDto contentView(String sbid);
 	BDto modifyView(String sbid);
+	void modify(String bid, String bname, String btitle, String bcontent);
+	BDto reply_view(String sbid);
 
 
 
