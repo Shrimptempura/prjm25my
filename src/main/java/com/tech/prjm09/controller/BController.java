@@ -92,9 +92,14 @@ public class BController {
 	@GetMapping("modify_view")
 	public String modify_view(HttpServletRequest request, Model model) {
 		System.out.println("modify_view() ctr");
-		model.addAttribute("request", request);
-		command = new BModifyViewCommand();
-		command.execute(model);
+//		model.addAttribute("request", request);
+//		command = new BModifyViewCommand();
+//		command.execute(model);
+		
+		String bid = request.getParameter("bid");
+		BDto dto = iDao.modifyView(bid);
+		
+		model.addAttribute("content_view", dto);
 		
 		return "modify_view";
 	}
